@@ -1,12 +1,67 @@
-# React + Vite
+# Food Order App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+This is a React-based food ordering application built with Vite. The app allows users to browse a menu of available meals, add items to their cart, and manage their order. It's a single-page application that demonstrates core React concepts like components, state management, context API, and more.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Implementation Details
 
-## Expanding the ESLint configuration
+### Tech Stack
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React**: For building the UI components
+- **Vite**: As the build tool and development server
+- **CSS Modules**: For component-scoped styling
+- **React Context API**: For global state management
+- **React Portals**: For rendering modals outside the DOM hierarchy
+
+### Project Structure
+
+The project follows a component-based architecture with the following structure:
+
+```
+src/
+├── assets/
+├── components/
+│   ├── Cart/
+│   ├── Header/
+│   ├── Meals/
+│   │   └── MealItem/
+│   └── UI/
+├── store/
+├── App.jsx
+└── main.jsx
+```
+
+### Key Features
+
+#### 1. Component Architecture
+
+I built the app using a modular component approach. Each component has a specific responsibility:
+
+- **Header**: Shows the app title and cart button
+- **Meals**: Displays available meals with descriptions and prices
+- **Cart**: Shows selected items and total amount
+- **UI Components**: Reusable UI elements like Card, Modal, and Input
+
+#### 2. State Management
+
+Instead of prop drilling, I implemented a context-based state management system:
+
+- **CartContext**: Provides cart data to all components that need it
+- **CartProvider**: Manages the cart state and provides methods to update it
+
+#### 3. Reducer Pattern
+
+For more complex state logic, I used the reducer pattern:
+
+```jsx
+const cartReducer = (state, action) => {
+  if (action.type === "ADD") {
+    // Logic for adding items
+  }
+  if (action.type === "REMOVE") {
+    // Logic for removing items
+  }
+  return defaultCartState;
+};
+```
